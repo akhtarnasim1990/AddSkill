@@ -1,0 +1,23 @@
+class Solution {
+    public boolean isPalindrome(String s) {
+        String s1 = s.toUpperCase();
+        int n = s1.length();
+        int start = 0 , end = n-1;
+        while(start <= end){
+            if(s1.charAt(start) < 48 || (s1.charAt(start) > 57 && s1.charAt(start) <65) || s1.charAt(start) > 90){
+                start++;
+                continue;
+            }
+            else if(s1.charAt(end) < 48 || (s1.charAt(end) > 57 && s1.charAt(end) <65) || s1.charAt(end) > 90){
+                end--;
+                continue;
+            }
+            if(s1.charAt(start) != s1.charAt(end)){
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+}
