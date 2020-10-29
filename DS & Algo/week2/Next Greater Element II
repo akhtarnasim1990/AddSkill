@@ -1,0 +1,16 @@
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int arr[] = new int[n];
+        Stack<Integer> s = new Stack<>();
+        for(int i=2*n-1; i>=0; i--){
+            int x = i%n;
+            while(s.empty() == false && nums[s.peek()] <= nums[x]){
+                s.pop();
+            }
+             arr[x] = (s.empty()) ? -1 : (nums[s.peek()]);
+            s.push(x);
+        }
+        return arr;
+    }
+}
