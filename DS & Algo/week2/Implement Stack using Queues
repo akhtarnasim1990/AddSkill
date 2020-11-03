@@ -1,0 +1,54 @@
+class MyStack {
+
+    /** Initialize your data structure here. */
+    static Queue<Integer> q1 = new ArrayDeque<Integer>();    //main queue
+	static Queue<Integer> q2 = new ArrayDeque<Integer>(); 	 //aux. queue
+	static int curr_size; 
+    public MyStack() {
+        curr_size = 0;
+    }
+    
+    /** Push element x onto stack. */
+    public void push(int x) {
+        	curr_size++; 		
+			while (q1.isEmpty() == false) { 
+				q2.add(q1.peek()); 
+				q1.remove(); 
+			} 
+			q1.add(x); 
+		    while(q2.isEmpty() == false){
+                q1.add(q2.peek());
+                q2.remove();
+            }
+    }
+    
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+        if (q1.isEmpty()) 
+				return -1; 
+        curr_size--; 
+		return q1.remove(); 
+			
+    }
+    
+    /** Get the top element. */
+    public int top() {
+        	if (q1.isEmpty()) 
+				return -1; 
+			return q1.peek(); 
+    }
+    
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+        return (curr_size == 0);
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
