@@ -1,0 +1,32 @@
+class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        if(intervals.length == 0){
+            return new int[][]{newInterval};
+        }
+        List<int[]> res = new ArrayList<>();
+        int a = newInterval[0];
+        int b = newInterval[1];
+        for(int i=0; i<intervals.length; i++){
+            int start = intervals[i][0];
+            int end = intervals[i][1];
+            if(b >= start && end > a){       //checking merg condition: newInterval > intervals
+                a = Math.min(a , start);
+                b = Math.max(b , end);
+            }
+            else if(end >= a && b > start){     //checking merg condishion: intervals > newInterval
+                a = Math.min(a , start);
+                b = Math.max(b , end);
+            }
+            else if(end < a){
+                res.add(new int[]{start , end});   //adding intervals
+            }
+            else{
+                res.add(new int[]{a , b});     //adding newInterval
+                a = start;                  // ubdata  'a'
+                b = end;                    // ubdate   'b'
+            }
+        }
+        res.add(new int[]{a , b});            //adding last interval
+        return res.toArray(new int[][]{});
+    }
+}
