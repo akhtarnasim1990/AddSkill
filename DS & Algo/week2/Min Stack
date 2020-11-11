@@ -1,0 +1,38 @@
+class MinStack {
+
+    Stack<Integer> ms = new Stack<>();    // ms-> main stack
+    Stack<Integer> as = new Stack<>();    // as-> auxiliary stack
+    public MinStack() {
+    }
+    
+    public void push(int x) {
+        ms.add(x);
+        if(as.isEmpty() || x <= as.peek()){
+            as.add(x);
+        }
+    }
+    
+    public void pop() {
+        if(as.peek().equals(ms.peek())){
+            as.pop();
+        }
+        ms.pop();
+    }
+    
+    public int top() {
+        return ms.peek();
+    }
+    
+    public int getMin() {
+        return as.peek();
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
