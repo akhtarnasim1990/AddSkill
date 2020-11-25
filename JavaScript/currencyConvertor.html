@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Currency Converter</title>
+	<style>
+
+        .body{
+            background-image: url("bakg.jpg");
+            background-repeat : no-repeat;
+            background-size : cover;
+            width: 100%;
+            height: auto;
+        }
+
+		.computation ul{
+			list-style-type: none;
+			/*border: 4px solid black;*/
+			margin-left: 30%;
+			margin-top: 2%;
+		}
+
+		.computation ul li{
+
+			float: left;
+			padding: 10px 10px 10px 10px;
+		}
+
+		.amount{
+			margin-top: 2%;
+			margin-left: 40%;
+		}
+
+		.convertBtn{
+			margin-left: 46%;
+		}
+
+		.resultPara{
+			margin-left: 45%;
+		}
+
+		footer p{
+			margin-top: 350px;
+			margin-bottom: 0px;
+			margin-left: 500px;
+            padding: 20px;
+		}
+
+	</style>
+
+	<script>
+		
+		function convert(){
+
+			var dollarMap = new Map([['usd' , 1], ['euro' , 1.18], ['inr' , 74.15]]);
+			var euroMap = new Map([['usd' , 0.843], ['euro' , 1], ['inr' , 87.91]]);
+			var inrMap = new Map([['usd' , 0.013], ['euro' , 0.0113], ['inr' , 1]]);
+
+			let from = document.querySelector('.from').value;
+			let to = document.querySelector('.to').value;
+			var amt = document.querySelector('.amt').value;
+			var res = '';
+
+            if(from == "INR"){
+				if(to == "INR"){
+					res = String(amt);
+				}
+				else if(to == "USD"){
+					res = String(amt*inrMap.get('usd'));
+				}
+				else if(to == "EUR"){
+					res = String(amt*inrMap.get('euro'));
+				}
+			}            
+
+			else if(from == "USD"){
+				if(to == "EUR"){
+					res = String(amt/dollarMap.get('euro'));
+				}
+				else if(to == "USD"){
+					res = String(amt);
+				}
+				else if(to == "INR"){
+					res = String(amt*dollarMap.get('inr'));
+				}
+			}
+
+            else if(from == "EUR"){
+				if(to == "EUR"){
+					res = String(amt);
+				}
+				else if(to == "USD"){
+					res = String(amt/euroMap.get('usd'));
+				}
+				else if(to == "INR"){
+					res = String(amt*euroMap.get('inr'));
+				}
+			}
+
+			let resText = document.createTextNode('The result is: ' + res);
+			document.querySelector('.resultPara').append(resText);
+		}
+	</script>
+
+</head>
+
+<body class="body">
+
+		<h1 id="heading" style="color: black; text-align: center;">Currency Convertor</h1>
+		<div class="computation">
+			<ul class="currecyFromAndTo">
+				<li>
+					From: <select name="fromCurrency" class="from">
+						<option value="USD" selected="selected">United States Dollars</option>
+						<option value="EUR">Euro</option>
+						<option value="GBP">United Kingdom Pounds</option>
+						<option value="DZD">Algeria Dinars</option>
+						<option value="ARP">Argentina Pesos</option>
+						<option value="AUD">Australia Dollars</option>
+						<option value="ATS">Austria Schillings</option>
+						<option value="BSD">Bahamas Dollars</option>
+						<option value="BBD">Barbados Dollars</option>
+						<option value="BEF">Belgium Francs</option>
+						<option value="BMD">Bermuda Dollars</option>
+						<option value="BRR">Brazil Real</option>
+						<option value="BGL">Bulgaria Lev</option>
+						<option value="CAD">Canada Dollars</option>
+						<option value="CLP">Chile Pesos</option>
+						<option value="CNY">China Yuan Renmimbi</option>
+						<option value="CYP">Cyprus Pounds</option>
+						<option value="CSK">Czech Republic Koruna</option>
+						<option value="DKK">Denmark Kroner</option>
+						<option value="NLG">Dutch Guilders</option>
+						<option value="XCD">Eastern Caribbean Dollars</option>
+						<option value="EGP">Egypt Pounds</option>
+						<option value="FJD">Fiji Dollars</option>
+						<option value="FIM">Finland Markka</option>
+						<option value="FRF">France Francs</option>
+						<option value="DEM">Germany Deutsche Marks</option>
+						<option value="XAU">Gold Ounces</option>
+						<option value="GRD">Greece Drachmas</option>
+						<option value="HKD">Hong Kong Dollars</option>
+						<option value="HUF">Hungary Forint</option>
+						<option value="ISK">Iceland Krona</option>
+						<option value="INR">India Rupees</option>
+						<option value="IDR">Indonesia Rupiah</option>
+						<option value="IEP">Ireland Punt</option>
+						<option value="ILS">Israel New Shekels</option>
+						<option value="ITL">Italy Lira</option>
+						<option value="JMD">Jamaica Dollars</option>
+						<option value="JPY">Japan Yen</option>
+						<option value="JOD">Jordan Dinar</option>
+						<option value="KRW">Korea (South) Won</option>
+						<option value="LBP">Lebanon Pounds</option>
+						<option value="LUF">Luxembourg Francs</option>
+						<option value="MYR">Malaysia Ringgit</option>
+						<option value="MXP">Mexico Pesos</option>
+						<option value="NLG">Netherlands Guilders</option>
+						<option value="NZD">New Zealand Dollars</option>
+						<option value="NOK">Norway Kroner</option>
+						<option value="PKR">Pakistan Rupees</option>
+						<option value="XPD">Palladium Ounces</option>
+						<option value="PHP">Philippines Pesos</option>
+						<option value="XPT">Platinum Ounces</option>
+						<option value="PLZ">Poland Zloty</option>
+						<option value="PTE">Portugal Escudo</option>
+						<option value="ROL">Romania Leu</option>
+						<option value="RUR">Russia Rubles</option>
+						<option value="SAR">Saudi Arabia Riyal</option>
+						<option value="XAG">Silver Ounces</option>
+						<option value="SGD">Singapore Dollars</option>
+						<option value="SKK">Slovakia Koruna</option>
+						<option value="ZAR">South Africa Rand</option>
+						<option value="KRW">South Korea Won</option>
+						<option value="ESP">Spain Pesetas</option>
+						<option value="XDR">Special Drawing Right (IMF)</option>
+						<option value="SDD">Sudan Dinar</option>
+						<option value="SEK">Sweden Krona</option>
+						<option value="CHF">Switzerland Francs</option>
+						<option value="TWD">Taiwan Dollars</option>
+						<option value="THB">Thailand Baht</option>
+						<option value="TTD">Trinidad and Tobago Dollars</option>
+						<option value="TRL">Turkey Lira</option>
+						<option value="VEB">Venezuela Bolivar</option>
+						<option value="ZMK">Zambia Kwacha</option>
+						<option value="EUR">Euro</option>
+						<option value="XCD">Eastern Caribbean Dollars</option>
+						<option value="XDR">Special Drawing Right (IMF)</option>
+						<option value="XAG">Silver Ounces</option>
+						<option value="XAU">Gold Ounces</option>
+						<option value="XPD">Palladium Ounces</option>
+						<option value="XPT">Platinum Ounces</option>
+					</select>
+				</li>
+
+				<li>
+					To: <select name="toCurrency" class="to">
+						<option value="USD" selected="selected">United States Dollars</option>
+						<option value="EUR">Euro</option>
+						<option value="GBP">United Kingdom Pounds</option>
+						<option value="DZD">Algeria Dinars</option>
+						<option value="ARP">Argentina Pesos</option>
+						<option value="AUD">Australia Dollars</option>
+						<option value="ATS">Austria Schillings</option>
+						<option value="BSD">Bahamas Dollars</option>
+						<option value="BBD">Barbados Dollars</option>
+						<option value="BEF">Belgium Francs</option>
+						<option value="BMD">Bermuda Dollars</option>
+						<option value="BRR">Brazil Real</option>
+						<option value="BGL">Bulgaria Lev</option>
+						<option value="CAD">Canada Dollars</option>
+						<option value="CLP">Chile Pesos</option>
+						<option value="CNY">China Yuan Renmimbi</option>
+						<option value="CYP">Cyprus Pounds</option>
+						<option value="CSK">Czech Republic Koruna</option>
+						<option value="DKK">Denmark Kroner</option>
+						<option value="NLG">Dutch Guilders</option>
+						<option value="XCD">Eastern Caribbean Dollars</option>
+						<option value="EGP">Egypt Pounds</option>
+						<option value="FJD">Fiji Dollars</option>
+						<option value="FIM">Finland Markka</option>
+						<option value="FRF">France Francs</option>
+						<option value="DEM">Germany Deutsche Marks</option>
+						<option value="XAU">Gold Ounces</option>
+						<option value="GRD">Greece Drachmas</option>
+						<option value="HKD">Hong Kong Dollars</option>
+						<option value="HUF">Hungary Forint</option>
+						<option value="ISK">Iceland Krona</option>
+						<option value="INR">India Rupees</option>
+						<option value="IDR">Indonesia Rupiah</option>
+						<option value="IEP">Ireland Punt</option>
+						<option value="ILS">Israel New Shekels</option>
+						<option value="ITL">Italy Lira</option>
+						<option value="JMD">Jamaica Dollars</option>
+						<option value="JPY">Japan Yen</option>
+						<option value="JOD">Jordan Dinar</option>
+						<option value="KRW">Korea (South) Won</option>
+						<option value="LBP">Lebanon Pounds</option>
+						<option value="LUF">Luxembourg Francs</option>
+						<option value="MYR">Malaysia Ringgit</option>
+						<option value="MXP">Mexico Pesos</option>
+						<option value="NLG">Netherlands Guilders</option>
+						<option value="NZD">New Zealand Dollars</option>
+						<option value="NOK">Norway Kroner</option>
+						<option value="PKR">Pakistan Rupees</option>
+						<option value="XPD">Palladium Ounces</option>
+						<option value="PHP">Philippines Pesos</option>
+						<option value="XPT">Platinum Ounces</option>
+						<option value="PLZ">Poland Zloty</option>
+						<option value="PTE">Portugal Escudo</option>
+						<option value="ROL">Romania Leu</option>
+						<option value="RUR">Russia Rubles</option>
+						<option value="SAR">Saudi Arabia Riyal</option>
+						<option value="XAG">Silver Ounces</option>
+						<option value="SGD">Singapore Dollars</option>
+						<option value="SKK">Slovakia Koruna</option>
+						<option value="ZAR">South Africa Rand</option>
+						<option value="KRW">South Korea Won</option>
+						<option value="ESP">Spain Pesetas</option>
+						<option value="XDR">Special Drawing Right (IMF)</option>
+						<option value="SDD">Sudan Dinar</option>
+						<option value="SEK">Sweden Krona</option>
+						<option value="CHF">Switzerland Francs</option>
+						<option value="TWD">Taiwan Dollars</option>
+						<option value="THB">Thailand Baht</option>
+						<option value="TTD">Trinidad and Tobago Dollars</option>
+						<option value="TRL">Turkey Lira</option>
+						<option value="VEB">Venezuela Bolivar</option>
+						<option value="ZMK">Zambia Kwacha</option>
+						<option value="EUR">Euro</option>
+						<option value="XCD">Eastern Caribbean Dollars</option>
+						<option value="XDR">Special Drawing Right (IMF)</option>
+						<option value="XAG">Silver Ounces</option>
+						<option value="XAU">Gold Ounces</option>
+						<option value="XPD">Palladium Ounces</option>
+						<option value="XPT">Platinum Ounces</option>
+					</select>
+				</li>
+			</ul>
+		</div>
+
+		<br>
+		<!-- <hr> -->
+
+		<p class="amount"> Amount: <input type="text" name="amount" class="amt"> </p>
+		<input type="submit" class="convertBtn" name="convert" value="convert" onclick="convert()" style="width: 100px; height: auto;">
+		<br>
+		<p class="resultPara"></p>
+
+		<footer style="width: 100%; height: auto;">
+			<p>INR, USD and EURO inter-conversion supportable.</p>
+		</footer>
+
+
+</body>
+
+</html>
