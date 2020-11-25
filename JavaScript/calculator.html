@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+                       body {
+  background-color: #888;
+}
+
+table {
+  margin: auto;
+  background-color: #222;
+  width: 295px;
+  max-width: 295px;
+  height: 325px;
+  text-align: center;
+  border-radius: 4px;
+  padding-right: 10px;
+}
+
+input {
+  outline: 0;
+  position: relative;
+  left: 5px;
+  top: 5px;
+  border: 0;
+  color: #495069;
+  background-color: #fff;
+  border-radius: 4px;
+  width: 60px;
+  height: 50px;
+  float: left;
+  margin: 5px;
+  font-size: 20px;
+  box-shadow: 0 4px rgba(0,0,0,0.2);
+  margin-bottom: 15px;
+}
+
+input:hover {
+  border: 0 solid #000;
+  color: #495069;
+  background-color: #fff;
+  border-radius: 4px;
+  width: 60px;
+  height: 50px;
+  float: left;
+  margin: 5px;
+  font-size: 20px;
+  box-shadow: 0 4px #b0d2cf;
+}
+
+input:active {
+  top: 4px;
+  border: 0 solid #000;
+  color: #495069;
+  background-color: #fff;
+  border-radius: 4px;
+  width: 60px;
+  height: 50px;
+  float: left;
+  margin: 5px;
+  font-size: 20px;
+  box-shadow: none;
+}
+
+.operator {
+  background-color: #cee9ea;
+  position: relative;
+}
+
+.operator:hover {
+  background-color: #cee9ea;
+  box-shadow: 0 4px #b0d2cf;
+}
+
+.operator:active {
+  top: 4px;
+  box-shadow: none;
+}
+
+
+        </style>
+
+    </head>
+    <body>
+
+        <form name="calculator">
+
+            <table>
+
+                <div id="cal_display">
+
+                    <tr>
+                        <td><input type="text" name="diplay" id="diplay"></td>
+                    </tr>
+
+                </div>
+
+                <div id="cal_keys">
+
+                    <tr>
+                        <td><input type="button" name="pi" value="pi" onclick="pie(pi.value)"></td>
+                        <td><input type="button" name="backsapce" value="x" onclick="backspace()"></td>
+                        <td><input type="button" name="openBracket" value="(" onclick="display(openBracket.value)"></td>
+                        <td><input type="button" name="closedBracket" value=")" onclick="display(closedBracket.value)"></td>
+                        <td><input type="button" name="clear" value="C" onclick="display(clear.value)"></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="button" name="sqrt" value="sqrt" onclick="square(sqrt)"></td>
+                        <td><input type="button" name="one" value="1" onclick="display(one.value)"></td>
+                        <td><input type="button" name="two" value="2" onclick="display(two.value)"></td>
+                        <td><input type="button" name="three" value="3" onclick="display(three.value)"></td>
+                        <td><input type="button" class="operator" name="plus" value="+" onclick="display(plus.value)"></td>
+    
+                    </tr>
+    
+                    <tr>
+                        <td><input type="button" name="sine" value="sin" onclick="sin(sine.value)"></td>
+                        <td><input type="button" name="four" value="4" onclick="display(four.value)"></td>
+                        <td><input type="button" name="five" value="5" onclick="display(five.value)"></td>
+                        <td><input type="button" name="six" value="6" onclick="display(six.value)"></td>
+                        <td><input type="button" class="operator" name="minus" value="-" onclick="display(minus.value)"></td>
+    
+                    </tr>
+    
+                    <tr>
+                        <td><input type="button" name="cosine" value="cos" onclick="cos(cosine.value)"></td>
+                        <td><input type="button" name="seven" value="7" onclick="display(seven.value)"></td>
+                        <td><input type="button" name="eight" value="8" onclick="display(eight.value)"></td>
+                        <td><input type="button" name="nine" value="9" onclick="display(nine.value)"></td>
+                        <td><input type="button" class="operator" name="multiply" value="*" onclick="display(multiply.value)"></td>
+    
+                    </tr>
+    
+                    <tr>
+                        <td><input type="button" name="tangent" value="tan" onclick="tan(tangent.value)"></td>
+                        <td><input type="button" name="zero" value="0" onclick="display(zero.value)"></td>
+                        <td><input type="button" name="dot" value="." onclick="display(dot.value)"></td>
+                        <td><input type="button" name="doit" value="=" onclick="answer()"></td>
+                        <td><input type="button" class="operator" name="division" value="/" onclick="display(division.value)"></td>
+    
+                    </tr>
+    
+
+                </div>
+
+            </table>
+
+        </form>
+
+        <script type="text/javascript">
+
+            var txtField = document.getElementById('diplay');
+    
+            function pie(txt) {
+                txt = txtField.value;
+                txtField.value = txt * 3.142;
+            }
+    
+            function sin(txt) {
+                txt = txtField.value;
+                txt = Math.sin(txt * Math.PI / 180);
+                txtField.value = txt;
+            }
+    
+            function cos(txt) {
+                txt = txtField.value;
+                txt = Math.cos(txt * Math.PI / 180);
+                txtField.value = txt;
+            }
+    
+            function tan(txt) {
+                txt = txtField.value;
+                txt = Math.tan(txt * Math.PI / 180);
+                txtField.value = txt;
+            }
+    
+            function backspace() {
+                var num = txtField.value;
+                var len = num.length - 1;
+                var newNumber = num.substring(0, len);
+                txtField.value = newNumber;
+            }
+    
+            function square(txt) {
+                txt = txtField.value;
+                txt = Math.sqrt(txt);
+                txtField.value = txt;
+            }
+    
+            function answer(txt) {
+                txt = txtField.value;
+                if (txt != "") {
+                    try {
+                        txt = eval(txt);
+                        txtField.value = txt;
+                        if (txt == (1 / 0)) txtField.value = "Cannot divide by 0";
+                    } catch (error) {
+                        txtField.value = "Syntax error";
+                    }
+                }
+                if(txtField.value != String)
+                    history.push(txtField.value)
+            }
+    
+            function display(txt) {
+                txtField.value += txt;
+    
+                if (txt === 'C') {
+                    txtField.value = "";
+                    return false;
+                }
+            }
+        </script>
+        
+    </body>
+</html>
